@@ -10,12 +10,8 @@ app = Flask(__name__,
           static_folder='static',      # 静态文件目录
           template_folder='templates') # 新增模板目录配置
 
-# 串口配置
-SERIAL_PORT = '/dev/ttyTHS1'
-BAUDRATE = 115200
-
 # 初始化串口
-nano_serial = NanoSerial(SERIAL_PORT, BAUDRATE)
+nano_serial = NanoSerial('/dev/ttyTHS1', 115200)
 
 # 串口发送线程
 def serial_sender():
