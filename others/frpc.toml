@@ -1,7 +1,7 @@
 serverAddr = "8.138.187.31"
 serverPort = 6767
 auth.method = "token"
-auth.token = "2HJC8jXWbPsZHcrcM2suDtGQRFdY5R7C7JSWaG7P"
+auth.token = "xxxxxxxxxxxxxxxxxxxxxx"
 
 [[proxies]]
 name = "CAC_frpc"
