@@ -1,0 +1,10 @@
+serverAddr = "8.138.187.31"
+serverPort = 6767
+auth.method = "token"
+auth.token = "2HJC8jXWbPsZHcrcM2suDtGQRFdY5R7C7JSWaG7P"
+
+[[proxies]]
+name = "CAC_frpc"
+type = "http"
+localPort = 7500
+customDomains = ["8.138.187.31"]
