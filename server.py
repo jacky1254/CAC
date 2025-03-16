@@ -1,11 +1,14 @@
-from flask import Flask, Response, request, send_from_directory
+from flask import Flask, Response, request, send_from_directory, render_template
 import cv2
 import threading
 import time
 import os
-from NanoSerial import NanoSerial  # 导入 nanoSerial.py 中的类
+from utils.NanoSerial import NanoSerial
 
-app = Flask(__name__, static_folder='static')
+
+app = Flask(__name__, 
+          static_folder='static',      # 静态文件目录
+          template_folder='templates') # 新增模板目录配置
 
 # 串口配置
 SERIAL_PORT = '/dev/ttyTHS1'
@@ -54,7 +57,7 @@ def serial_sender():
 # 静态文件路由
 @app.route('/')
 def index():
-    return send_from_directory(app.static_folder, 'index.html')
+    return render_template('index.html')  # 从 templates 目录加载
 
 # 指令接收接口
 @app.route('/command', methods=['POST'])
@@ -78,7 +81,7 @@ def handle_command():
 @app.route('/video_feed')
 def video_feed():
     def generate():
-        camera = cv2.VideoCapture(0)
+        camera = cv2.VideoCapture(app.config.get('VIDEO_SOURCE', 0))
         camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
         camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
         
